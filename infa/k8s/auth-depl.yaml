@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket-auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticket-auth
+  template:
+    metadata:
+      labels:
+        app: ticket-auth
+    spec:
+      containers:
+        - name: ticket-auth
+          image: npn/ticket-auth
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticket-auth-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: ticket-auth
+  ports:
+    - name: auth-srv
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
