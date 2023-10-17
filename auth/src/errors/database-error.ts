@@ -1,8 +1,7 @@
-import { ValidationError } from "express-validator";
-import { AbstractCustomError } from "./custom-error";
+import { AbstractCustomError } from "./interfaces/custom-error";
 
 const DATABASE_ERROR_MESSAGE = "Error connnecting to database";
-export class RequestValidationError extends AbstractCustomError {
+export class DatabaseError extends AbstractCustomError {
   statusCode = 500;
   reason = DATABASE_ERROR_MESSAGE;
 
