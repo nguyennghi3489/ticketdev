@@ -31,11 +31,11 @@ router.get(
 
     try {
       const user = User.build({ email, password });
-      user.save();
+      await user.save();
+      res.status(200).send(user);
     } catch (error) {
       throw new DatabaseError();
     }
-    res.send({});
   }
 );
 

@@ -9,6 +9,7 @@ export const errorHandler = (
 ) => {
   if (error instanceof AbstractCustomError) {
     res.status(error.statusCode).send(error.serializeErrors());
+  } else {
+    res.status(400).send([{ message: "Something went wrong" }]);
   }
-  res.status(400).send([{ message: "Something went wrong" }]);
 };
