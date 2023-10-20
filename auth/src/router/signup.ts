@@ -4,9 +4,11 @@ import { RequestValidationError } from "../errors/request-validation-error";
 import { User } from "../models/user";
 import { BadRequestError } from "../errors/bad-request-error";
 import { DatabaseError } from "../errors/database-error";
+import jwt from "jsonwebtoken";
+
 const router = express.Router();
 
-router.get(
+router.post(
   "/api/users/signup",
   [
     body("email").isEmail().withMessage("Please input email"),
@@ -32,7 +34,9 @@ router.get(
     try {
       const user = User.build({ email, password });
       await user.save();
-      res.status(200).send(user);
+      const jwtoken = jwt.sign({ user }, "jwt_secret");
+      req.session = { jwt: jwtoken };
+      res.status(200).send(req.session);
     } catch (error) {
       throw new DatabaseError();
     }
