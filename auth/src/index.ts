@@ -31,6 +31,9 @@ app.use(signupRouter);
 app.use(errorHandler);
 
 const start = async () => {
+  if (!process.env.JWT_KEY) {
+    console.log("Missing JWT_KEY enviroment!");
+  }
   try {
     await mongoose.connect(
       "mongodb://auth-mongo-srv:27017/auth?directConnection=true"

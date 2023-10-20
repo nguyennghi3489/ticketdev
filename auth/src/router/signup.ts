@@ -34,7 +34,7 @@ router.post(
     try {
       const user = User.build({ email, password });
       await user.save();
-      const jwtoken = jwt.sign({ user }, "jwt_secret");
+      const jwtoken = jwt.sign({ user }, process.env.JWT_KEY!);
       req.session = { jwt: jwtoken };
       res.status(200).send(req.session);
     } catch (error) {
