@@ -1,19 +1,12 @@
 import express from "express";
-import { BadRequestError } from "../errors/bad-request-error";
 import jwt from "jsonwebtoken";
+import { requireAuth } from "../middleware/require-auth";
 
 const router = express.Router();
 
-router.get("/api/users/currentuser", (req, res) => {
-  if (!req.session?.jwt) {
-    return res.send({ currentUser: null });
-  }
-  try {
-    const payload = jwt.verify(req.session.jwt, process.env.JWT_KEY!);
-    res.send({ currentUser: payload });
-  } catch (e) {
-    res.send({ currentUser: null });
-  }
+router.get("/api/users/currentuser", requireAuth, (req, res) => {
+  const payload = jwt.decode(req.session!.jwt);
+  res.send({ currentUser: payload });
 });
 
 export { router as currentUserRouter };
