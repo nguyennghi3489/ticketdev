@@ -15,13 +15,7 @@ it("return 400 when a email does not exist is supplied", async () => {
 });
 
 it("return 400 when a password is not correct", async () => {
-  await request(app)
-    .post("/api/users/signup")
-    .send({
-      email: TEST_EMAIL,
-      password: TEST_PASS,
-    })
-    .expect(201);
+  await global.signin(TEST_EMAIL, TEST_PASS);
 
   await request(app)
     .post("/api/users/signin")
@@ -33,13 +27,7 @@ it("return 400 when a password is not correct", async () => {
 });
 
 it("return 200 on signin successfully", async () => {
-  await request(app)
-    .post("/api/users/signup")
-    .send({
-      email: TEST_EMAIL,
-      password: TEST_PASS,
-    })
-    .expect(201);
+  await global.signin(TEST_EMAIL, TEST_PASS);
 
   const response = await request(app)
     .post("/api/users/signin")
