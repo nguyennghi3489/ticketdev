@@ -17,7 +17,7 @@ app.use(
     name: "session",
     maxAge: 3 * 60 * 1000,
     signed: false,
-    secure: true,
+    secure: process.env.NODE_ENV !== "test",
   })
 );
 
