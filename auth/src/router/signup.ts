@@ -33,7 +33,7 @@ router.post(
       await user.save();
       const jwtoken = jwt.sign({ user }, process.env.JWT_KEY!);
       req.session = { jwt: jwtoken };
-      res.status(200).send(user);
+      res.status(201).send(user);
     } catch (error) {
       throw new DatabaseError();
     }
