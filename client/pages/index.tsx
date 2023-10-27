@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 const Page: NextPage = () => {
-  return <p>hello world 123</p>;
+  return <p>Landing Page</p>;
 };
 
 export default Page;
