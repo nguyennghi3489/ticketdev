@@ -22,21 +22,20 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      const isCorrectPassword = await Password.comparePassword(
-        existingUser.password as string,
-        password
-      );
-      if (!isCorrectPassword) {
-        throw new BadRequestError("Email or Password is not corrected");
-      }
-      const jwtoken = jwt.sign({ existingUser }, process.env.JWT_KEY!);
-      req.session = { jwt: jwtoken };
-      res.status(200).send(existingUser);
-    } else {
+    const user = await User.findOne({ email });
+    if (!user) {
       throw new BadRequestError("Email or Password is not corrected");
     }
+    const isCorrectPassword = await Password.comparePassword(
+      user.password as string,
+      password
+    );
+    if (!isCorrectPassword) {
+      throw new BadRequestError("Email or Password is not corrected");
+    }
+    const jwtoken = jwt.sign({ user }, process.env.JWT_KEY!);
+    req.session = { jwt: jwtoken };
+    res.status(200).send(user);
   }
 );
 
