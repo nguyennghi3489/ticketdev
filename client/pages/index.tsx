@@ -2,15 +2,10 @@ import { NextPage, NextPageContext } from "next";
 import { buildClient } from "../api/build-client";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
+import { TCurrentUser } from "../models/user";
 
-interface IProps {
-  user: {
-    email: string;
-  };
-}
-const Page: NextPage = (currentUser: IProps) => {
+const Page: NextPage = (currentUser: TCurrentUser) => {
   const router = useRouter();
-  console.log(currentUser);
   useEffect(() => {
     if (currentUser.user === null) {
       router.push("/sign-up");
