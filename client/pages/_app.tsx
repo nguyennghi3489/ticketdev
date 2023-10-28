@@ -11,6 +11,31 @@ const App = ({
   pageProps,
   currentUser,
 }: AppProps & { currentUser: TCurrentUser }) => {
+  const links = [
+    !currentUser.user && {
+      url: "/sign-in",
+      label: "Sign In",
+    },
+    !currentUser.user && {
+      url: "/sign-up",
+      label: "Sign Up",
+    },
+    currentUser.user && {
+      url: "/sign-out",
+      label: "Sign Out",
+    },
+  ]
+    .filter((link) => link)
+    .map((item) => (
+      <Link
+        key={item.label}
+        className="mr-5 font-medium hover:text-gray-900"
+        href={item.url}
+      >
+        {item.label}
+      </Link>
+    ));
+  console.log(links);
   return (
     <div>
       <header className="z-10 relative w-full mt-5 text-gray-700 bg-transparent shadow-sm body-font">
@@ -19,20 +44,7 @@ const App = ({
             MicroLyon
           </a>
 
-          <div className="items-center h-full">
-            <Link
-              className="mr-5 font-medium hover:text-gray-900"
-              href="/sign-in"
-            >
-              Sign In
-            </Link>
-            <Link
-              className="px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none ease"
-              href="/sign-up"
-            >
-              Sign Up
-            </Link>
-          </div>
+          <div className="items-center h-full">{links}</div>
         </div>
       </header>
       <Component {...pageProps} />

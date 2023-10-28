@@ -11,7 +11,13 @@ const Page: NextPage = (currentUser: TCurrentUser) => {
       router.push("/sign-up");
     }
   }, [currentUser]);
-  return <p>Landing Page {currentUser?.user?.email}</p>;
+  return (
+    <div className="container flex flex-col items-start justify-between p-6 mx-auto md:flex-row">
+      <div className="">
+        <h1>Landing Page {currentUser?.user?.email}</h1>
+      </div>
+    </div>
+  );
 };
 
 Page.getInitialProps = async (context: NextPageContext) => {
