@@ -1,4 +1,3 @@
-import axios from "axios";
 import { NextPage } from "next";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
 import { useRequest } from "../hooks/use-request";

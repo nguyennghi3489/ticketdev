@@ -1,5 +1,4 @@
 // These styles apply to every route in the application
-import { NextApiRequest, NextPage } from "next";
 import "../styles/globals.css";
 import type { AppContext, AppProps } from "next/app";
 import { buildClient } from "../api/build-client";

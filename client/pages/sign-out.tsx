@@ -1,5 +1,4 @@
-import { NextPage, NextPageContext } from "next";
-import { buildClient } from "../api/build-client";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { useRequest } from "../hooks/use-request";
