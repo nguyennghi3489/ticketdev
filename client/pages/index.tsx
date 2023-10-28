@@ -10,12 +10,13 @@ interface IProps {
 }
 const Page: NextPage = (currentUser: IProps) => {
   const router = useRouter();
+  console.log(currentUser);
   useEffect(() => {
-    if (currentUser === null) {
+    if (currentUser.user === null) {
       router.push("/sign-up");
     }
   }, [currentUser]);
-  return <p>Landing Page {currentUser.user.email}</p>;
+  return <p>Landing Page {currentUser?.user?.email}</p>;
 };
 
 Page.getInitialProps = async (context: NextPageContext) => {
