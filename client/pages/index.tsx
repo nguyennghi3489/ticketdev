@@ -1,14 +1,30 @@
 import { NextPage, NextPageContext } from "next";
 import { buildClient } from "../api/build-client";
+import Router, { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const Page: NextPage = () => {
-  return <p>Landing Page</p>;
+interface IProps {
+  user: {
+    email: string;
+  };
+}
+const Page: NextPage = (currentUser: IProps) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (currentUser === null) {
+      router.push("/sign-up");
+    }
+  }, [currentUser]);
+  return <p>Landing Page {currentUser.user.email}</p>;
 };
 
 Page.getInitialProps = async (context: NextPageContext) => {
   const client = buildClient(context);
-  const response = await client.get("/api/users/currentuser");
-
-  return { data: response.data };
+  try {
+    const response = await client.get("/api/users/currentuser");
+    return { ...response.data.currentUser };
+  } catch {
+    return { user: null };
+  }
 };
 export default Page;
