@@ -1,6 +1,6 @@
 {
   "name": "@microlyon/common",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -19,7 +19,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "clean": "del ./build/*s",
+    "clean": "del ./build/*",
     "build": "yarn clean & tsc",
     "pub": "yarn version --patch && yarn build && yarn publish --access public"
   }
