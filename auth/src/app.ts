@@ -5,7 +5,7 @@ import { currentUserRouter } from "./router/current-user";
 import { signinRouter } from "./router/signin";
 import { signupRouter } from "./router/signup";
 import { signoutRouter } from "./router/signout";
-import { errorHandler } from "./middleware/error-handler";
+import { errorHandler } from "@microlyon/common";
 import cookieSession from "cookie-session";
 
 const app = express();

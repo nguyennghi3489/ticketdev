@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { requireAuth } from "../middleware/require-auth";
+import { requireAuth } from "@microlyon/common";
 
 const router = express.Router();
 
