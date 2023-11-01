@@ -1,6 +1,6 @@
 {
   "name": "@microlyon/common",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./build/index.js",
   "type": "./build/index.d.ts",
   "files": [
